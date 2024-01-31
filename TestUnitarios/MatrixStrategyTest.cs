@@ -4,8 +4,6 @@ using NUnit.Framework.Legacy;
 
 namespace UnitTest
 {
-
-
     [TestFixture]
     public class MatrixStrategyTests
     {
@@ -15,10 +13,10 @@ namespace UnitTest
             RandomMatrix matrix = new RandomMatrix();
             MatrixStrategy matrixStrategy = new MatrixStrategy(matrix);
 
-            List<Position> camino = matrixStrategy.CalculateShortestPath();
+            List<Position> path = matrixStrategy.CalculateShortestPath();
 
-            ClassicAssert.NotNull(camino);
-            ClassicAssert.IsNotEmpty(camino);
+            ClassicAssert.NotNull(path);
+            ClassicAssert.IsNotEmpty(path);
         }
 
         [Test]
@@ -26,10 +24,10 @@ namespace UnitTest
         {
             try
             {
-                RandomMatrix matriz = null;
-                MatrixStrategy matrixStrategy = new MatrixStrategy(matriz);
+                RandomMatrix matrix = null;
+                MatrixStrategy matrixStrategy = new MatrixStrategy(matrix);
 
-                List<Position> camino = matrixStrategy.CalculateShortestPath();
+                matrixStrategy.CalculateShortestPath();
             }
             catch (Exception ex)
             {
@@ -42,12 +40,12 @@ namespace UnitTest
         {
             try
             {
-                char[,] laberinto = { };
+                char[,] labyrinth = { };
 
-                Matrix matriz = new Matrix(laberinto);
-                MatrixStrategy matrixStrategy = new MatrixStrategy(matriz);
+                Matrix matrix = new Matrix(labyrinth);
+                MatrixStrategy matrixStrategy = new MatrixStrategy(matrix);
 
-                List<Position> camino = matrixStrategy.CalculateShortestPath();
+                matrixStrategy.CalculateShortestPath();
             }
             catch (Exception ex)
             {
@@ -58,7 +56,7 @@ namespace UnitTest
         [Test]
         public void CalcularCaminoCorto_NoExisteObjetivo_RetornaListaVacia()
         {
-            char[,] laberinto = {
+            char[,] labyrinth = {
                 { '*', '*', '*', '*', '*', '*', '*', '*'},
                 { '*', '*', '*', '*', '*', '*', '*', '*'},
                 { '*', '*', '*', '*', '*', '*', '*', '*'},
@@ -74,18 +72,18 @@ namespace UnitTest
                 { '*', '*', '*', '*', '*', '*', '*', '*'},
             };
 
-            Matrix matriz = new Matrix(laberinto);
-            MatrixStrategy matrixStrategy = new MatrixStrategy(matriz);
+            Matrix matrix = new Matrix(labyrinth);
+            MatrixStrategy matrixStrategy = new MatrixStrategy(matrix);
 
-            List<Position> camino = matrixStrategy.CalculateShortestPath();
+            List<Position> path = matrixStrategy.CalculateShortestPath();
 
-            ClassicAssert.AreEqual(camino.Count, 0);
+            ClassicAssert.AreEqual(path.Count, 0);
         }
 
         [Test]
         public void CalcularCaminoCorto_NoExisteCamino_RetornaListaVacia()
         {
-            char[,] laberinto = {
+            char[,] labyrinth = {
                 { '*', 'B', '*', '*', '*', '*', '*', '*'},
                 { 'B', 'B', '*', '*', '*', '*', '*', '*'},
                 { '*', '*', '*', '*', '*', '*', '*', '*'},
@@ -101,19 +99,19 @@ namespace UnitTest
                 { '*', '*', '*', '*', '*', '*', '*', '*'},
             };
 
-            Matrix matriz = new Matrix(laberinto);
-            MatrixStrategy matrixStrategy = new MatrixStrategy(matriz);
+            Matrix matrix = new Matrix(labyrinth);
+            MatrixStrategy matrixStrategy = new MatrixStrategy(matrix);
 
-            List<Position> camino = matrixStrategy.CalculateShortestPath();
+            List<Position> path = matrixStrategy.CalculateShortestPath();
 
-            ClassicAssert.AreEqual(camino.Count, 0);
+            ClassicAssert.AreEqual(path.Count, 0);
         }
 
 
         [Test]
         public void CalcularCaminoCorto_ObstaculoEnPositionInicial_RetornaListaVacia()
         {
-            char[,] laberinto = {
+            char[,] labyrinth = {
                 { 'B', '*', '*', '*', '*', '*', '*', '*'},
                 { '*', '*', '*', '*', '*', '*', '*', '*'},
                 { '*', '*', '*', '*', '*', '*', '*', '*'},
@@ -129,18 +127,18 @@ namespace UnitTest
                 { '*', '*', '*', '*', '*', '*', '*', '*'},
             };
 
-            Matrix matriz = new Matrix(laberinto);
-            MatrixStrategy matrixStrategy = new MatrixStrategy(matriz);
+            Matrix matrix = new Matrix(labyrinth);
+            MatrixStrategy matrixStrategy = new MatrixStrategy(matrix);
 
-            List<Position> camino = matrixStrategy.CalculateShortestPath();
+            List<Position> path = matrixStrategy.CalculateShortestPath();
 
-            ClassicAssert.AreEqual(camino.Count, 0);
+            ClassicAssert.AreEqual(path.Count, 0);
         }
 
         [Test]
         public void CalcularCaminoCorto_ObjetivoEnPositionInicial_RetornaPositionInicial()
         {
-            char[,] laberinto = {
+            char[,] labyrinth = {
                 { 'X', '*', '*', '*', '*', '*', '*', '*'},
                 { '*', '*', '*', '*', '*', '*', '*', '*'},
                 { '*', '*', '*', '*', '*', '*', '*', '*'},
@@ -156,13 +154,13 @@ namespace UnitTest
                 { '*', '*', '*', '*', '*', '*', '*', '*'},
             };
 
-            Matrix matriz = new Matrix(laberinto);
-            MatrixStrategy matrixStrategy = new MatrixStrategy(matriz);
+            Matrix matrix = new Matrix(labyrinth);
+            MatrixStrategy matrixStrategy = new MatrixStrategy(matrix);
 
-            List<Position> camino = matrixStrategy.CalculateShortestPath();
+            List<Position> path = matrixStrategy.CalculateShortestPath();
 
-            ClassicAssert.AreEqual(camino.Count, 1);
-            ClassicAssert.AreEqual(camino.First(), new Position(0,0));
+            ClassicAssert.AreEqual(path.Count, 1);
+            ClassicAssert.AreEqual(path[0], new Position(0,0));
         }
 
         

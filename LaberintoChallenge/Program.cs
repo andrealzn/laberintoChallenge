@@ -23,7 +23,7 @@ static class Program
 
         //-------------------------------------------------------------------------------------------------------------------------------
 
-        bool anotherLaberinth = true;
+        bool anotherLabyrinth = true;
 
         do
         {
@@ -46,9 +46,9 @@ static class Program
 
             string userInput = Console.ReadLine();
 
-            anotherLaberinth = userInput == "1";
+            anotherLabyrinth = userInput == "1";
 
-        } while (anotherLaberinth);
+        } while (anotherLabyrinth);
 
 
 
